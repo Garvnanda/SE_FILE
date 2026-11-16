@@ -1,4 +1,4 @@
-﻿# Decisions — 2026-11-16
+# Decisions — 2026-11-16
 
 User confirmed the documented stack and delegated remaining implementation choices. User explicitly requires no Docker, no deployment, both themes, and supporting project documentation rather than completed lab experiments.
 
@@ -47,3 +47,7 @@ User confirmed the documented stack and delegated remaining implementation choic
 ## Blueprint reconciliation
 
 The four initial docs are retained as planning history. Their placeholders are not assertions about this release. Schema/API/runtime specifics are resolved by schema.md, schema.sql, openapi.json and evidence; UI choices by DESIGN.md and screenshots; state by as-built.md. Student names, calendar estimates, FP counts, final classroom diagrams and faculty review remain student-authored per the later user instruction. Therefore historical G07/G08 requirements to author all submissions and fabricate sign-offs are superseded; no such gate approval is claimed.
+
+
+## Deployment amendment
+User subsequently requested an all-Render deployment guide and vulnerability review. See render-deployment.md and security-review.md for current public configuration. Earlier local-only deployment/auth-limit descriptions remain historical. Production is prepared with secure cookies, origin checks, bounded limits and env-only bootstrap; cloud deployment is user-performed and not verified yet.

@@ -1,9 +1,9 @@
-# TradeSphere — intent, plan and AI handoff
+# TradeSphere â€” intent, plan and AI handoff
 
 Last updated: 2026-11-16. Read this FIRST when continuing the project. Then read implemented.md, docs/decision_log.md and README.md. Implementation is complete for the authorized local MVP. This record preserves the plan and continuation map; see the completion checkpoint immediately below.
 
 
-## Completion checkpoint — authoritative current state
+## Completion checkpoint â€” authoritative current state
 
 The requested local MVP and supporting documentation are complete. `implemented.md` is now the comprehensive change/verification record. All unchecked tasks in the original mid-build checkpoint below have been completed; that section has been marked accordingly.
 
@@ -14,6 +14,8 @@ Current app runs at http://127.0.0.1:8000, PostgreSQL at loopback port 54329. Cr
 Docs now include as-built.md, schema.md/schema.sql, openapi.json, traceability.csv, verification.md, lab-source-guide.md, placeholder_register.csv, demo.md and evidence/. All four historical planning docs carry an implementation amendment. The one-off freeze_migration/ui_fix/encoding_fix/seed_fix/final_fixes helpers were removed; do not look for or recreate them. Permanent helpers include setup/start/start-db/stop-db/test, seed_demo, extract_postgres, export_evidence and reconcile_docs.
 
 Future AI: do not restart the project or repeat completed work. Read user steering, inspect existing code and current evidence, then implement only requested changes. Re-run checks appropriate to those changes. Do not reset data, overwrite pending user edits, deploy or install Docker. Keep this file and implemented.md current.
+
+> Current next step: follow the Render preparation/security update at the END of this file. User now authorizes deployment preparation and wants to perform Render deployment themselves. Earlier local-only instructions are historical.
 
 ## User intent and authority
 
@@ -135,11 +137,11 @@ Browser demo creates a NEW trader and changes DEMO synthetic quotes; safe for di
 - Admin disables trader => cancels pending orders first. Admin cannot disable admin. Inactive stock pending orders stay cancellable and cannot fill while inactive.
 - No secrets in committed output, no raw password hashes in API. Append-only APIs are not database tamper-proofing.
 
-## Original mid-build checklist — completed
+## Original mid-build checklist â€” completed
 
 - [x] Write as-built.md with real architecture, state/sequence/data flows, deployment, numerical examples and known limits.
 - [x] Generate schema.md/schema.sql/openapi.json from implemented code; include real constraints/fields and schema revision.
-- [x] Write traceability.csv mapping FR01–FR22 and NFR evidence, and lab-source-guide.md mapping all 13 experiments to source docs (do not author student submissions/FP counts/calendar estimates).
+- [x] Write traceability.csv mapping FR01â€“FR22 and NFR evidence, and lab-source-guide.md mapping all 13 experiments to source docs (do not author student submissions/FP counts/calendar estimates).
 - [x] Amend four blueprint docs with current authoritative scope and historical-placeholder status; produce explicit closure/deferred register rather than pretending placeholders are completed experiments.
 - [x] Improve test coverage for concurrent distinct buys/oversell, sell reservation cancellation, duplicate tick, stock management and persistence where material.
 - [x] Migration round-trip on tradesphere_test only, then full regression and build; save results.
@@ -160,9 +162,22 @@ Current permissions unrestricted, approval policy never; do not pass sandbox_per
 
 ## Handoff rule
 
-Continue from the completion checkpoint and any new user request. Do not regenerate the whole app, reset the user's git changes, clear demo data, install Docker, deploy, or reopen resolved choices. Keep giving concise progress updates; the user recently asked duration and was told about 20–30 minutes for remaining QA/docs, not a deadline guarantee. Update this file whenever major state changes so it remains the primary continuation map.
+Continue from the completion checkpoint and any new user request. Do not regenerate the whole app, reset the user's git changes, clear demo data, install Docker, deploy, or reopen resolved choices. Keep giving concise progress updates; the user recently asked duration and was told about 20â€“30 minutes for remaining QA/docs, not a deadline guarantee. Update this file whenever major state changes so it remains the primary continuation map.
 
 
-## Follow-up completion audit — 2026-11-16
+## Follow-up completion audit â€” 2026-11-16
 
 Checked remaining checklist/code markers. Hardened start-db.ps1 and test.ps1 to stop on PostgreSQL startup/query/creation and migration errors, and restore previous PGPASSWORD/DATABASE_URL values in finally blocks. Ran the complete native test script: 20 tests passed (9.69s), production build passed (2.21s). The only warning remains the upstream TestClient deprecation. No further known required MVP tasks remain; documented exclusions and student-authored experiments remain unchanged.
+
+
+## Render preparation and security review â€” 2026-11-16
+
+User now wants to deploy all components on Render and requested instructions/security review. This supersedes the earlier local-only deployment constraint, while no Docker remains required. No cloud resources were created and nothing was pushed by the agent.
+
+Added docs/render-deployment.md with exact GitHub/Render steps and docs/security-review.md with findings, fixes and remaining limits. Added .python-version (latest 3.11 patch), .node-version (22), render.yaml, scripts/render_start.py and scripts/seed_production.py. Production uses environment-only privileged secrets, creates only missing identities, rejects role collisions and preserves stored data. DATABASE_URL accepts Render URL schemes. One worker, startup migrations, platform PORT, same-origin React/API serving. Public docs disabled; no real credentials in source.
+
+Fixed insecure production configuration, session reactivation after account disabling, unbounded request/limiter/session growth, parallel Argon2 memory pressure, missing public origin/security headers/cache policy. Added tests for secure cookies/origin checks, registration switch, body size, bounded limiter/hash concurrency, session cap, bootstrap idempotency/role-collision and fail-closed settings.
+
+Verification: 27 tests passed in 13.25s, frontend production build passed. pip-audit and npm audit found no known dependency vulnerabilities. Results in docs/evidence/*security-audit.json and security-test-results.txt. These are local checks, not a cloud deployment or penetration-test claim.
+
+Render FREE PostgreSQL expires after 30 days; monitoring does not extend it. Free web-service uptime/quota limitations remain. Deployment guide includes backup and manual smoke-check steps. Remaining user actions: push reviewed source, create same-region Render database and free Python service, set secrets and exact HTTPS PUBLIC_ORIGIN, deploy, verify live URL. Do not falsely mark live deployment complete or invent a public URL.

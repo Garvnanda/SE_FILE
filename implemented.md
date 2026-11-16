@@ -107,3 +107,16 @@ Completed the requested local MVP and supporting docs. No deployment, Docker, li
 ## Follow-up completion audit — 2026-11-16
 
 Checked remaining checklist/code markers. Hardened start-db.ps1 and test.ps1 to stop on PostgreSQL startup/query/creation and migration errors, and restore previous PGPASSWORD/DATABASE_URL values in finally blocks. Ran the complete native test script: 20 tests passed (9.69s), production build passed (2.21s). The only warning remains the upstream TestClient deprecation. No further known required MVP tasks remain; documented exclusions and student-authored experiments remain unchanged.
+
+
+## Render preparation and security review — 2026-11-16
+
+User now wants to deploy all components on Render and requested instructions/security review. This supersedes the earlier local-only deployment constraint, while no Docker remains required. No cloud resources were created and nothing was pushed by the agent.
+
+Added docs/render-deployment.md with exact GitHub/Render steps and docs/security-review.md with findings, fixes and remaining limits. Added .python-version (latest 3.11 patch), .node-version (22), render.yaml, scripts/render_start.py and scripts/seed_production.py. Production uses environment-only privileged secrets, creates only missing identities, rejects role collisions and preserves stored data. DATABASE_URL accepts Render URL schemes. One worker, startup migrations, platform PORT, same-origin React/API serving. Public docs disabled; no real credentials in source.
+
+Fixed insecure production configuration, session reactivation after account disabling, unbounded request/limiter/session growth, parallel Argon2 memory pressure, missing public origin/security headers/cache policy. Added tests for secure cookies/origin checks, registration switch, body size, bounded limiter/hash concurrency, session cap, bootstrap idempotency/role-collision and fail-closed settings.
+
+Verification: 27 tests passed in 13.25s, frontend production build passed. pip-audit and npm audit found no known dependency vulnerabilities. Results in docs/evidence/*security-audit.json and security-test-results.txt. These are local checks, not a cloud deployment or penetration-test claim.
+
+Render FREE PostgreSQL expires after 30 days; monitoring does not extend it. Free web-service uptime/quota limitations remain. Deployment guide includes backup and manual smoke-check steps. Remaining user actions: push reviewed source, create same-region Render database and free Python service, set secrets and exact HTTPS PUBLIC_ORIGIN, deploy, verify live URL. Do not falsely mark live deployment complete or invent a public URL.

@@ -2,6 +2,10 @@
 
 A local educational paper-trading application: FastAPI, PostgreSQL, SQLAlchemy/Alembic, React, TypeScript, Vite and Tailwind. Virtual funds, synthetic quotations, no real orders.
 
+## Deploy on Render
+
+Follow [the Render guide](docs/render-deployment.md) for exact upload, database, service and secret settings. Read [the security review](docs/security-review.md). Free Render PostgreSQL expires after 30 days; uptime monitoring does not extend it. Deployment is prepared but has not been performed.
+
 ## Start on Windows (no Docker)
 
 Prerequisites: Python 3.11+, Node 22.12+ and internet access for the first installation. Run from this repository in PowerShell:

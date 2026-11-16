@@ -25,8 +25,8 @@ Revision: 0001. Generated from actual ORM mapping. Numeric values are fixed prec
 | active | BOOLEAN | False |  |
 | created_at | TIMESTAMP WITH TIME ZONE | False |  |
 
-- UNIQUE (email)
 - CHECK role IN ('TRADER','ADMIN','MARKET_OPERATOR')
+- UNIQUE (email)
 
 ## audit_logs
 
@@ -93,11 +93,11 @@ Revision: 0001. Generated from actual ORM mapping. Numeric values are fixed prec
 | created_at | TIMESTAMP WITH TIME ZONE | False |  |
 | updated_at | TIMESTAMP WITH TIME ZONE | False |  |
 
+- CHECK side IN ('BUY','SELL')
+- CHECK order_type IN ('MARKET','LIMIT')
 - UNIQUE (user_id, idempotency_key)
 - CHECK qty > 0
 - CHECK status IN ('PENDING','FILLED','CANCELLED','REJECTED')
-- CHECK side IN ('BUY','SELL')
-- CHECK order_type IN ('MARKET','LIMIT')
 
 ## portfolios
 
@@ -119,8 +119,8 @@ Revision: 0001. Generated from actual ORM mapping. Numeric values are fixed prec
 | recorded_at | TIMESTAMP WITH TIME ZONE | False |  |
 | event_key | VARCHAR | True |  |
 
-- UNIQUE (event_key)
 - CHECK price > 0
+- UNIQUE (event_key)
 
 ## watchlists
 
@@ -264,8 +264,8 @@ erDiagram
     datetime created_at
     datetime updated_at
   }
-  stocks ||--o{ orders : stock_id
   users ||--o{ orders : user_id
+  stocks ||--o{ orders : stock_id
   portfolios {
     int id PK
     int user_id FK
@@ -295,8 +295,8 @@ erDiagram
     numeric avg_cost
     numeric realized_pnl
   }
-  stocks ||--o{ holdings : stock_id
   portfolios ||--o{ holdings : portfolio_id
+  stocks ||--o{ holdings : stock_id
   trades {
     int id PK
     int order_id FK
@@ -307,9 +307,9 @@ erDiagram
     numeric execution_price
     datetime executed_at
   }
-  users ||--o{ trades : user_id
   orders ||--o{ trades : order_id
   stocks ||--o{ trades : stock_id
+  users ||--o{ trades : user_id
   wallets {
     int id PK
     int portfolio_id FK
