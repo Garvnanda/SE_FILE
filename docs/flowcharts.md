@@ -1,3 +1,5 @@
+> **Implementation amendment (2026-11-16):** This file is the original planning baseline, preserved for context. The implemented contract is documented in [decision_log.md](decision_log.md), [as-built.md](as-built.md), [schema.md](schema.md), [openapi.json](openapi.json) and [traceability.csv](traceability.csv). Historical placeholders are reconciled in [placeholder_register.csv](placeholder_register.csv). The user explicitly excluded authoring experiment submissions: [lab-source-guide.md](lab-source-guide.md) supplies material for all 13. No Docker, deployment, student identities or invented sign-offs.
+
 # TradeSphere — Diagram and Software Engineering Experiment Master Plan
 
 > **Planning status:** diagrams are **specifications/drafts**, not final rendered UML. Replace draft node and message names with the actual implementation after gates G01–G07; close every placeholder in final P08. The 13 experiments are based on the teacher's uploaded **SE LIST OF EXPERIMENTS.pdf** (one-page list). Mermaid examples are supplied where useful; produce UML-standard diagrams in PlantUML/draw.io if required by teacher.

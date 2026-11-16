@@ -1,0 +1,9 @@
+{
+  "recorded_at": "2026-11-16T16:35:59.857868+00:00",
+  "python": "3.11.7",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "postgresql": "PostgreSQL 17.6 on x86_64-windows, compiled by msvc-19.44.35213, 64-bit",
+  "migration": "0001",
+  "database": "tradesphere; tests isolated in tradesphere_test",
+  "deployment": "localhost only; no Docker"
+}

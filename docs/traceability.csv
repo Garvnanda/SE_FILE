@@ -1,0 +1,23 @@
+requirement,implemented_functions,tables,verification,evidence
+FR-01,register/create_user,"users,portfolios,wallets,wallet_ledger",test_registration_credit_once; test_registration_then_immediate_login_commit,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-02,login/current/role/logout,"users,auth_sessions",test_owner_and_csrf_and_logout; test_role_boundaries,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-03,add_stock/edit_stock,stocks,test_catalog_and_disabled_stock,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-04,stocks/history,"stocks,price_ticks",test_catalog_and_disabled_stock; browser-smoke.mjs,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-05,tick/change_session,"price_ticks,market_sessions",test_immediate_limit_and_reopen; browser-demo.mjs,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-06,create_user,"portfolios,wallets,wallet_ledger",test_registration_credit_once,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-07,wallet/ledger,"wallets,wallet_ledger",test_canonical_demo; test_rejections_and_cancel,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-08,trading.place/settle,"orders,trades,wallets,holdings",test_canonical_demo,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-09,trading.place,"orders,wallets,holdings",test_rejections_and_cancel; test_sell_reservations_and_duplicate_tick,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-10,trading.process_pending,"price_ticks,orders,trades",test_canonical_demo; test_sell_reservations_and_duplicate_tick,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-11,trading.cancel,"orders,wallets,holdings",test_rejections_and_cancel; test_cancel_fill_race,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-12,trading.place; OrderInput,"orders,notifications",test_stale_and_validation; test_rejections_and_cancel; test_catalog_and_disabled_stock,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-13,trading.settle; trades,trades,test_canonical_demo; browser-demo.mjs,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-14,trading.settle; db_session,"wallets,wallet_ledger,holdings,orders,trades,audit_logs,notifications",test_forced_rollback,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-15,portfolio; trading.average_cost,"holdings,wallets,price_ticks",test_canonical_demo; test_cost_formula,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-16,records/orders/trades,"orders,trades,stocks",test_watchlist_notifications_admin; browser-demo.mjs,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-17,watchlists/new_watchlist/watch_item,"watchlists,watchlist_items",test_watchlist_notifications_admin,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-18,portfolio; UI overview,"wallets,holdings,price_ticks",test_canonical_demo; browser-demo.mjs,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-19,notify/notifications/read_notification,notifications,test_watchlist_notifications_admin; test_rejections_and_cancel,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-20,trading.record; audit,audit_logs,test_watchlist_notifications_admin; browser-demo.mjs,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-21,users/summary/audit,"users,orders,trades,stocks,audit_logs",test_watchlist_notifications_admin; test_role_boundaries,evidence/pytest.xml; evidence/browser-demo.json; source code
+FR-22,trading.place; tick,"orders,trades,price_ticks",test_concurrent_duplicate_and_payload_conflict; test_sell_reservations_and_duplicate_tick,evidence/pytest.xml; evidence/browser-demo.json; source code

@@ -1,0 +1,73 @@
+id,source,status,resolution_or_authority,date
+OPEN-01,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-02,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-03,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-04,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-05,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-06,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-07,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-08,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-09,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-10,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-11,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-12,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-13,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-14,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-15,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-16,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-17,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-18,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-19,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-20,idea.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+API-TBD-01,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+API-TBD-02,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+API-TBD-03,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+API-TBD-04,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+API-TBD-05,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+OPEN-07,technical.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-08,technical.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+OPEN-21,technical.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+RBAC-TBD-01,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+SCHEMA-TBD-01,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+SCHEMA-TBD-02,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+SCHEMA-TBD-03,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+SCHEMA-TBD-04,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+SCHEMA-TBD-05,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+SCHEMA-TBD-06,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+STATE-TBD-01,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+TECH-TBD-01,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+TECH-TBD-02,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+TECH-TBD-03,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+TECH-TBD-04,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+TECH-TBD-05,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+TEST-TBD-01,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+UI-TBD-01,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+UI-TBD-02,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+UI-TBD-03,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+UI-TBD-04,technical.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+DIAG-TBD-01,implementation.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-19,implementation.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+LAB-TBD-01,implementation.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+OPEN-09,implementation.md,RESOLVED_OR_STUDENT_OWNED,decision_log.md: individual OPEN entries,2026-11-16
+RBAC-TBD-01,implementation.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+SCHEMA-TBD-01,implementation.md,RESOLVED_BY_IMPLEMENTATION,decision_log.md; as-built.md; schema.md; openapi.json; evidence/,2026-11-16
+DIAG-TBD-01,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-02,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-03,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-04,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-05,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-06,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-07,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-08,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-09,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-10,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-11,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-12,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-13,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-14,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-15,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-16,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-17,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-18,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-19,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16
+DIAG-TBD-20,flowcharts.md,SOURCE_MATERIAL_DELIVERED,lab-source-guide.md; student authors experiment diagrams/schedule/reviews per user instruction,2026-11-16

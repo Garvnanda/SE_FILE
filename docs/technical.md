@@ -1,3 +1,5 @@
+> **Implementation amendment (2026-11-16):** This file is the original planning baseline, preserved for context. The implemented contract is documented in [decision_log.md](decision_log.md), [as-built.md](as-built.md), [schema.md](schema.md), [openapi.json](openapi.json) and [traceability.csv](traceability.csv). Historical placeholders are reconciled in [placeholder_register.csv](placeholder_register.csv). The user explicitly excluded authoring experiment submissions: [lab-source-guide.md](lab-source-guide.md) supplies material for all 13. No Docker, deployment, student identities or invented sign-offs.
+
 # TradeSphere — Technical Specification and SRS Baseline
 
 > **Version:** 1.0 (proposed, not implemented). Read `idea.md` for boundaries / unresolved choices. This is a **software design specification**, not a claim that the application already exists.

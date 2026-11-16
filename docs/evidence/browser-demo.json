@@ -1,0 +1,7 @@
+{
+  "scenario": "buy 10 @100, buy 5 @95, sell 3 @110",
+  "equity": "100175.00",
+  "roles": 3,
+  "errors": [],
+  "status": "passed"
+}

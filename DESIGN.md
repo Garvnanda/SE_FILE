@@ -1,0 +1,2 @@
+﻿# Design
+Professional financial workspace: persistent navigation, spacious page headings, compact numerical tables and a prominent order ticket. Slate surfaces and restrained teal actions, amber pending states, clear red errors. Light and dark theme use the same hierarchy. Body uses locally bundled Inter; tabular figures for money. Visible keyboard focus and labeled inputs; mobile navigation wraps and tables scroll. Mode: Operate. User delegated visual details on 2026-11-16.
