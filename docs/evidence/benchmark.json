@@ -2,8 +2,8 @@
   "endpoint": "GET /api/v1/stocks",
   "requests": 60,
   "dataset": "four seeded instruments, local server",
-  "p95_ms": 7.577000000310363,
-  "mean_ms": 6.464105000183433,
+  "p95_ms": 12.506700000812998,
+  "mean_ms": 9.43409999999858,
   "target_ms": 1000,
   "target_met": true,
   "caveat": "Sequential local sample only; not production load test"

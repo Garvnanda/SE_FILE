@@ -25,8 +25,8 @@ Revision: 0001. Generated from actual ORM mapping. Numeric values are fixed prec
 | active | BOOLEAN | False |  |
 | created_at | TIMESTAMP WITH TIME ZONE | False |  |
 
-- CHECK role IN ('TRADER','ADMIN','MARKET_OPERATOR')
 - UNIQUE (email)
+- CHECK role IN ('TRADER','ADMIN','MARKET_OPERATOR')
 
 ## audit_logs
 
@@ -94,9 +94,9 @@ Revision: 0001. Generated from actual ORM mapping. Numeric values are fixed prec
 | updated_at | TIMESTAMP WITH TIME ZONE | False |  |
 
 - UNIQUE (user_id, idempotency_key)
-- CHECK side IN ('BUY','SELL')
 - CHECK qty > 0
 - CHECK status IN ('PENDING','FILLED','CANCELLED','REJECTED')
+- CHECK side IN ('BUY','SELL')
 - CHECK order_type IN ('MARKET','LIMIT')
 
 ## portfolios
@@ -119,8 +119,8 @@ Revision: 0001. Generated from actual ORM mapping. Numeric values are fixed prec
 | recorded_at | TIMESTAMP WITH TIME ZONE | False |  |
 | event_key | VARCHAR | True |  |
 
-- CHECK price > 0
 - UNIQUE (event_key)
+- CHECK price > 0
 
 ## watchlists
 
@@ -143,8 +143,8 @@ Revision: 0001. Generated from actual ORM mapping. Numeric values are fixed prec
 | avg_cost | NUMERIC(24, 8) | False |  |
 | realized_pnl | NUMERIC(24, 8) | False |  |
 
-- CHECK qty >= reserved_qty AND reserved_qty >= 0
 - UNIQUE (portfolio_id, stock_id)
+- CHECK qty >= reserved_qty AND reserved_qty >= 0
 
 ## trades
 
@@ -170,8 +170,8 @@ Revision: 0001. Generated from actual ORM mapping. Numeric values are fixed prec
 | cash_total | NUMERIC(24, 4) | False |  |
 | cash_reserved | NUMERIC(24, 4) | False |  |
 
-- UNIQUE (portfolio_id)
 - CHECK cash_total >= cash_reserved AND cash_reserved >= 0
+- UNIQUE (portfolio_id)
 
 ## watchlist_items
 
@@ -295,8 +295,8 @@ erDiagram
     numeric avg_cost
     numeric realized_pnl
   }
-  portfolios ||--o{ holdings : portfolio_id
   stocks ||--o{ holdings : stock_id
+  portfolios ||--o{ holdings : portfolio_id
   trades {
     int id PK
     int order_id FK
@@ -322,8 +322,8 @@ erDiagram
     int watchlist_id FK
     int stock_id FK
   }
-  stocks ||--o{ watchlist_items : stock_id
   watchlists ||--o{ watchlist_items : watchlist_id
+  stocks ||--o{ watchlist_items : stock_id
   wallet_ledger {
     int id PK
     int wallet_id FK

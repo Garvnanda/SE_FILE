@@ -1,6 +1,19 @@
-﻿# TradeSphere — intent, plan and AI handoff
+# TradeSphere — intent, plan and AI handoff
 
-Last updated: 2026-11-16. Read this FIRST when continuing the project. Then read implemented.md, docs/decision_log.md and README.md. This is an active handoff record, not a claim that all final checks are finished.
+Last updated: 2026-11-16. Read this FIRST when continuing the project. Then read implemented.md, docs/decision_log.md and README.md. Implementation is complete for the authorized local MVP. This record preserves the plan and continuation map; see the completion checkpoint immediately below.
+
+
+## Completion checkpoint — authoritative current state
+
+The requested local MVP and supporting documentation are complete. `implemented.md` is now the comprehensive change/verification record. All unchecked tasks in the original mid-build checkpoint below have been completed; that section has been marked accordingly.
+
+Final verification: 20 PostgreSQL tests passed in 10.91s; migration down/up on the separate test DB passed; TypeScript/Vite build passed; native setup rerun passed; browser smoke passed (three roles, two themes, 390px mobile); actual browser canonical trading scenario passed with equity INR 100175 and three fills; admin metadata editing passed and seed name was restored. One upstream TestClient deprecation warning remains informational. No production-load or separate-machine-install claim.
+
+Current app runs at http://127.0.0.1:8000, PostgreSQL at loopback port 54329. Credentials remain .runtime/demo-accounts.json. Discover current API PID through the listening port before restarting; the older PID references below are historical.
+
+Docs now include as-built.md, schema.md/schema.sql, openapi.json, traceability.csv, verification.md, lab-source-guide.md, placeholder_register.csv, demo.md and evidence/. All four historical planning docs carry an implementation amendment. The one-off freeze_migration/ui_fix/encoding_fix/seed_fix/final_fixes helpers were removed; do not look for or recreate them. Permanent helpers include setup/start/start-db/stop-db/test, seed_demo, extract_postgres, export_evidence and reconcile_docs.
+
+Future AI: do not restart the project or repeat completed work. Read user steering, inspect existing code and current evidence, then implement only requested changes. Re-run checks appropriate to those changes. Do not reset data, overwrite pending user edits, deploy or install Docker. Keep this file and implemented.md current.
 
 ## User intent and authority
 
@@ -28,11 +41,11 @@ Completion means clean build, passing meaningful automated checks, actual canoni
 
 1. Review original docs and repository; identify contradictions/open choices. DONE.
 2. Resolve user choices, choose/document remaining policies. DONE; docs/decision_log.md.
-3. Create native local PostgreSQL infrastructure, environment, schema and migration. IMPLEMENTED; final migration round-trip test still to be recorded.
+3. Create native local PostgreSQL infrastructure, environment, schema and migration. IMPLEMENTED; migration round-trip verified.
 4. Implement auth, role ownership, initial wallet, seed. IMPLEMENTED and tested.
 5. Implement catalog, synthetic quotes/session, synchronous pending-order processing. IMPLEMENTED and tested.
 6. Implement trading, reservations, settlement, idempotency, rejection/cancel notifications and audits. IMPLEMENTED and tested.
-7. Implement portfolio/P&L, history/filtering, watchlists, admin summaries. IMPLEMENTED; broaden final tests where needed.
+7. Implement portfolio/P&L, history/filtering, watchlists, admin summaries. IMPLEMENTED; final expanded tests passed.
 8. Build responsive three-role UI with both themes, price chart and order ticket. IMPLEMENTED; render smoke and actual browser trade scenario pass.
 9. Final QA: extend focused coverage, migration downgrade/upgrade on test DB, full regression, build, benchmark, evidence exports, inspect light/dark/mobile and demo screenshots.
 10. Finish supporting docs: as-built architecture/flow/state/security, generated schema/data dictionary/OpenAPI, traceability, source guide for 13 experiments, closure register. Preserve original blueprint as historical with clear amendment.
@@ -55,6 +68,7 @@ Frontend:
 - frontend/package-lock.json, backend/requirements.lock.txt: installed dependency locks.
 - frontend/browser-smoke.mjs: three-role login, screenshots, themes/mobile overflow and JS errors.
 - frontend/browser-demo.mjs: real isolated-browser canonical trading demo, new trader each run; validates equity 100175 and 3 fills, checks other pages/admin reload.
+- frontend/browser-admin.mjs: administrator metadata editing and restoration.
 
 Infrastructure:
 - scripts/setup.ps1: native Python venv/npm dependencies, portable PG download/extraction, start DB/migrate/seed/build.
@@ -64,9 +78,9 @@ Infrastructure:
 - scripts/test.ps1: separate test DB migrations/tests/build.
 - scripts/seed_demo.py: idempotent seed; generated passwords stored only under ignored .runtime.
 - scripts/extract_postgres.py: extracts bin/lib/share from official EDB ZIP.
-- Temporary scripts freeze_migration.py, ui_fix.py, encoding_fix.py, seed_fix.py are development helpers and should be removed before final delivery (never rerun encoding_fix on already-UTF8 files).
+- Temporary development helpers were removed; see completion checkpoint.
 
-Docs already written: README.md, PRODUCT.md, DESIGN.md, docs/decision_log.md, docs/demo.md. Original four docs unchanged at this checkpoint. implemented.md currently ONLY has initial review and needs comprehensive update. Evidence contains pytest.xml, browser-smoke.json, browser-demo.json and screenshots.
+Docs already written: README.md, PRODUCT.md, DESIGN.md, docs/decision_log.md, docs/demo.md. Original four docs unchanged at this checkpoint. implemented.md now contains the full implementation and verification record. Evidence contains pytest.xml, browser-smoke.json, browser-demo.json and screenshots.
 
 ## Runtime state and exact commands
 
@@ -102,7 +116,7 @@ Browser demo creates a NEW trader and changes DEMO synthetic quotes; safe for di
 - Mobile sidebar hides footer; added topbar mobile sign-out.
 - Browser screenshot result: no horizontal document overflow at 390px, scrollable navigation/tables intentional.
 - Ruff formatted backend; Prettier formatted UI. No final lint cleanliness claimed yet.
-- Initial pytest run: 16 passed, 1 Starlette httpx deprecation warning (not failure), 7.71 seconds. Needs rerun after final changes.
+- Initial pytest run: 16 passed, 1 Starlette httpx deprecation warning (not failure), 7.71 seconds. Superseded by the final 20-pass run.
 - Frontend builds pass; npm audit installation reported zero vulnerabilities.
 - Browser smoke passes three roles/two themes/mobile, no page errors. Actual browser canonical scenario also passes after transaction-scope fix; docs/evidence/browser-demo.json records it.
 
@@ -121,20 +135,20 @@ Browser demo creates a NEW trader and changes DEMO synthetic quotes; safe for di
 - Admin disables trader => cancels pending orders first. Admin cannot disable admin. Inactive stock pending orders stay cancellable and cannot fill while inactive.
 - No secrets in committed output, no raw password hashes in API. Append-only APIs are not database tamper-proofing.
 
-## Immediate remaining checklist (resume here)
+## Original mid-build checklist — completed
 
-- [ ] Write as-built.md with real architecture, state/sequence/data flows, deployment, numerical examples and known limits.
-- [ ] Generate schema.md/schema.sql/openapi.json from implemented code; include real constraints/fields and schema revision.
-- [ ] Write traceability.csv mapping FR01–FR22 and NFR evidence, and lab-source-guide.md mapping all 13 experiments to source docs (do not author student submissions/FP counts/calendar estimates).
-- [ ] Amend four blueprint docs with current authoritative scope and historical-placeholder status; produce explicit closure/deferred register rather than pretending placeholders are completed experiments.
-- [ ] Improve test coverage for concurrent distinct buys/oversell, sell reservation cancellation, duplicate tick, stock management and persistence where material.
-- [ ] Migration round-trip on tradesphere_test only, then full regression and build; save results.
-- [ ] Measure seeded API list p95 and capture environment/schema/object snapshot evidence without secrets.
-- [ ] Check final UI screenshots including actual demo result; run final browser checks after any relevant UI change.
-- [ ] Consider admin metadata editing UI: backend PATCH supports name/sector, current UI only toggles active plus creates instruments. Implement inline edit if needed to fulfill full catalog editing UX.
-- [ ] Fix any discovered issues; no invented passes.
-- [ ] Remove one-off helper scripts safely by explicit paths within workspace. Keep reusable seed/extraction/setup/start/test helpers.
-- [ ] Update implemented.md comprehensively and this checklist; final response with app URL/run commands, test outcomes and docs links.
+- [x] Write as-built.md with real architecture, state/sequence/data flows, deployment, numerical examples and known limits.
+- [x] Generate schema.md/schema.sql/openapi.json from implemented code; include real constraints/fields and schema revision.
+- [x] Write traceability.csv mapping FR01–FR22 and NFR evidence, and lab-source-guide.md mapping all 13 experiments to source docs (do not author student submissions/FP counts/calendar estimates).
+- [x] Amend four blueprint docs with current authoritative scope and historical-placeholder status; produce explicit closure/deferred register rather than pretending placeholders are completed experiments.
+- [x] Improve test coverage for concurrent distinct buys/oversell, sell reservation cancellation, duplicate tick, stock management and persistence where material.
+- [x] Migration round-trip on tradesphere_test only, then full regression and build; save results.
+- [x] Measure seeded API list p95 and capture environment/schema/object snapshot evidence without secrets.
+- [x] Check final UI screenshots including actual demo result; run final browser checks after any relevant UI change.
+- [x] Consider admin metadata editing UI: backend PATCH supports name/sector, current UI only toggles active plus creates instruments. Implement inline edit if needed to fulfill full catalog editing UX.
+- [x] Fix any discovered issues; no invented passes.
+- [x] Remove one-off helper scripts safely by explicit paths within workspace. Keep reusable seed/extraction/setup/start/test helpers.
+- [x] Update implemented.md comprehensively and this checklist; final response with app URL/run commands, test outcomes and docs links.
 
 ## Known boundaries / not unfinished hidden features
 
@@ -146,4 +160,9 @@ Current permissions unrestricted, approval policy never; do not pass sandbox_per
 
 ## Handoff rule
 
-Continue from the remaining checklist. Do not regenerate the whole app, reset the user's git changes, clear demo data, install Docker, deploy, or reopen resolved choices. Keep giving concise progress updates; the user recently asked duration and was told about 20–30 minutes for remaining QA/docs, not a deadline guarantee. Update this file whenever major state changes so it remains the primary continuation map.
+Continue from the completion checkpoint and any new user request. Do not regenerate the whole app, reset the user's git changes, clear demo data, install Docker, deploy, or reopen resolved choices. Keep giving concise progress updates; the user recently asked duration and was told about 20–30 minutes for remaining QA/docs, not a deadline guarantee. Update this file whenever major state changes so it remains the primary continuation map.
+
+
+## Follow-up completion audit — 2026-11-16
+
+Checked remaining checklist/code markers. Hardened start-db.ps1 and test.ps1 to stop on PostgreSQL startup/query/creation and migration errors, and restore previous PGPASSWORD/DATABASE_URL values in finally blocks. Ran the complete native test script: 20 tests passed (9.69s), production build passed (2.21s). The only warning remains the upstream TestClient deprecation. No further known required MVP tasks remain; documented exclusions and student-authored experiments remain unchanged.

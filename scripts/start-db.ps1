@@ -11,8 +11,13 @@ if (!(Test-Path '.runtime/pgdata/PG_VERSION')) {
 & "$bin/pg_ctl.exe" -D .runtime/pgdata status *> $null
 if ($LASTEXITCODE -ne 0) {
   & "$bin/pg_ctl.exe" -D .runtime/pgdata -l .runtime/postgres.log -o '-p 54329 -h 127.0.0.1' -w start
+  if ($LASTEXITCODE -ne 0) { throw 'PostgreSQL did not start; inspect .runtime/postgres.log' }
 }
+$previousPgPassword=$env:PGPASSWORD
+try {
 $env:PGPASSWORD='tradesphere'
 $exists=& "$bin/psql.exe" -h 127.0.0.1 -p 54329 -U tradesphere -d postgres -tAc "SELECT 1 FROM pg_database WHERE datname='tradesphere'"
+if ($LASTEXITCODE -ne 0) { throw 'Cannot query local PostgreSQL databases' }
 if ($exists -ne '1') { & "$bin/createdb.exe" -h 127.0.0.1 -p 54329 -U tradesphere tradesphere }
-Remove-Item Env:PGPASSWORD
+if ($LASTEXITCODE -ne 0) { throw 'Database creation failed' }
+} finally { $env:PGPASSWORD=$previousPgPassword }

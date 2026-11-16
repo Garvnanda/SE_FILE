@@ -101,8 +101,8 @@ CREATE TABLE orders (
 )
 
 ;
-CREATE INDEX ix_orders_status ON orders (status);
 CREATE INDEX ix_orders_user_id ON orders (user_id);
+CREATE INDEX ix_orders_status ON orders (status);
 
 CREATE TABLE portfolios (
 	id SERIAL NOT NULL, 

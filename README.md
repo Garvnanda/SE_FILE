@@ -1,4 +1,4 @@
-﻿# TradeSphere
+# TradeSphere
 
 A local educational paper-trading application: FastAPI, PostgreSQL, SQLAlchemy/Alembic, React, TypeScript, Vite and Tailwind. Virtual funds, synthetic quotations, no real orders.
 
@@ -29,6 +29,7 @@ cd frontend
 npx playwright install chromium
 node browser-smoke.mjs
 node browser-demo.mjs
+node browser-admin.mjs
 ```
 
 Backend tests clear ONLY the separate `tradesphere_test` database. Browser-demo creates a new demo trader and operates the DEMO instrument; use the local demonstration database. Test artifacts are in `docs/evidence/`. API documentation: **http://127.0.0.1:8000/docs**. Rebuild after frontend edits with `npm.cmd run build --prefix frontend`.
@@ -46,6 +47,7 @@ Backend tests clear ONLY the separate `tradesphere_test` database. Browser-demo 
 ## Documentation
 
 - `implemented.md`: work performed and verification results.
+- `intention.md`: complete plan, decisions and continuation map for a future AI.
 - `docs/decision_log.md`: resolved product and implementation policies.
 - `docs/as-built.md`: architecture, flows, security, formulas, state and deployment.
 - `docs/schema.md`, `docs/schema.sql`: generated data dictionary and PostgreSQL schema.

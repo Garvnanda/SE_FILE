@@ -584,6 +584,9 @@ function App() {
               act(async () => {
                 await api("/auth/logout", "POST");
                 setUser(null);
+                setWatchId(0);
+                setEditingStock(null);
+                setOffset(0);
                 setData({});
                 setSelected(0);
               }, "Signed out")
@@ -620,6 +623,9 @@ function App() {
                 act(async () => {
                   await api("/auth/logout", "POST");
                   setUser(null);
+                  setWatchId(0);
+                  setEditingStock(null);
+                  setOffset(0);
                   setData({});
                   setSelected(0);
                 }, "Signed out")

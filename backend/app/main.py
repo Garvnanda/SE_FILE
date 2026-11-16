@@ -10,13 +10,21 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, EmailStr, Field, model_validator
 from argon2 import PasswordHasher
 from argon2.exceptions import VerificationError
-from sqlalchemy import select, func, text
+from sqlalchemy import select, func, text, delete
 from sqlalchemy.exc import IntegrityError
 from .db import Session, settings
 from .models import *
 from . import trading as engine
+from .security import RequestLimits, hash_password, verify_password, auth_throttle
 
-app = FastAPI(title="TradeSphere", version="1.0.0")
+app = FastAPI(
+    title="TradeSphere",
+    version="1.0.0",
+    docs_url=None if settings.environment == "production" else "/docs",
+    redoc_url=None if settings.environment == "production" else "/redoc",
+    openapi_url=None if settings.environment == "production" else "/openapi.json",
+)
+app.add_middleware(RequestLimits)
 ph = PasswordHasher()
 API = "/api/v1"
 
@@ -61,10 +69,21 @@ async def headers(request, call_next):
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "same-origin"
+    if request.url.path.startswith("/api/"):
+        response.headers["Cache-Control"] = "no-store"
+    if settings.environment == "production":
+        response.headers["Strict-Transport-Security"] = "max-age=31536000"
+        response.headers["Content-Security-Policy"] = (
+            "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+        )
     return response
 
 
 def current(request: Request, db=DB):
+    if request.method not in ("GET", "HEAD", "OPTIONS"):
+        engine.lock_market(
+            db
+        )  # Re-read active identity after concurrent admin changes.
     token = request.cookies.get("session", "")
     session = db.get(AuthSession, hashlib.sha256(token.encode()).hexdigest())
     if not session or session.expires_at < now():
@@ -141,22 +160,15 @@ class NameInput(BaseModel):
     name: str = Field(min_length=1, max_length=80)
 
 
-attempts = defaultdict(deque)
+attempts = auth_throttle.entries
 
 
 def throttle(request):
-    key = request.client.host
-    queue = attempts[key]
-    cutoff = time.monotonic() - 60
-    while queue and queue[0] < cutoff:
-        queue.popleft()
-    if len(queue) >= 30:
-        raise HTTPException(429, "Too many attempts. Try again in one minute.")
-    queue.append(time.monotonic())
+    auth_throttle.check(request.client.host if request.client else "unknown")
 
 
 def create_user(db, email, password, role="TRADER"):
-    u = User(email=email.lower(), password_hash=ph.hash(password), role=role)
+    u = User(email=email.lower(), password_hash=hash_password(password), role=role)
     db.add(u)
     db.flush()
     if role == "TRADER":
@@ -187,6 +199,8 @@ def health(db=DB):
 @app.post(API + "/auth/register", status_code=201)
 def register(data: Credentials, request: Request, db=DB):
     throttle(request)
+    if not settings.allow_registration:
+        raise HTTPException(403, "Registration is currently closed")
     return row(create_user(db, str(data.email), data.password))
 
 
@@ -197,9 +211,22 @@ def login(data: Credentials, request: Request, response: Response, db=DB):
     try:
         if not u or not u.active:
             raise ValueError()
-        ph.verify(u.password_hash, data.password)
+        verify_password(u.password_hash, data.password)
     except (ValueError, VerificationError):
         raise HTTPException(401, "Email or password is incorrect")
+    engine.lock_market(db)
+    db.refresh(u)
+    if not u.active:
+        raise HTTPException(401, "Email or password is incorrect")
+    db.execute(delete(AuthSession).where(AuthSession.expires_at < now()))
+    old_sessions = db.scalars(
+        select(AuthSession)
+        .where(AuthSession.user_id == u.id)
+        .order_by(AuthSession.expires_at.desc())
+        .offset(4)
+    ).all()
+    for old in old_sessions:
+        db.delete(old)
     token = secrets.token_urlsafe(32)
     csrf = secrets.token_urlsafe(32)
     db.add(
@@ -569,6 +596,7 @@ def edit_user(ident: int, data: ActiveInput, u=Admin, db=DB):
             409, "Administrator accounts cannot be disabled through this interface"
         )
     if not data.active:
+        db.execute(delete(AuthSession).where(AuthSession.user_id == ident))
         for o in db.scalars(
             select(Order).where(Order.user_id == ident, Order.status == "PENDING")
         ).all():

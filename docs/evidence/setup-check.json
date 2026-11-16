@@ -1,0 +1,8 @@
+{
+  "initialPostgresCluster": "initialized from empty directory",
+  "migrationRoundTrip": "passed on tradesphere_test",
+  "nativeSetupRerun": "passed",
+  "separateMachineInstall": "not performed",
+  "docker": false,
+  "deployed": false
+}

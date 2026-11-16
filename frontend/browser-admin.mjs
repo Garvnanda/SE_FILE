@@ -1,0 +1,6 @@
+﻿import { chromium, expect } from '@playwright/test';
+import fs from 'node:fs';
+const accounts=JSON.parse(fs.readFileSync('../.runtime/demo-accounts.json','utf8'));
+const browser=await chromium.launch();const page=await browser.newPage();
+await page.goto('http://127.0.0.1:8000');await page.getByLabel('Email address').fill(accounts.ADMIN.email);await page.getByLabel('Password',{exact:true}).fill(accounts.ADMIN.password);await page.getByRole('button',{name:'Sign in',exact:true}).click();await page.getByRole('button',{name:'Instruments',exact:true}).click();
+const row=page.locator('tbody tr').filter({has:page.getByRole('cell',{name:'DEMO',exact:true})});await row.getByRole('button',{name:'Edit',exact:true}).click();await page.getByLabel('Company name',{exact:true}).fill('Demo Industries (edited)');await page.getByRole('button',{name:'Save changes',exact:true}).click();await expect(row).toContainText('Demo Industries (edited)');await row.getByRole('button',{name:'Edit',exact:true}).click();await page.getByLabel('Company name',{exact:true}).fill('Demo Industries');await page.getByRole('button',{name:'Save changes',exact:true}).click();await expect(row).toContainText('Demo Industries');await browser.close();fs.writeFileSync('../docs/evidence/browser-admin.json',JSON.stringify({metadataEdit:'passed',originalNameRestored:true},null,2));

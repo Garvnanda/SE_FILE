@@ -1,0 +1,28 @@
+﻿# Optional reference configuration. The manual guide explains setting secrets.
+services:
+  - type: web
+    name: tradesphere
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.lock.txt && npm ci --prefix frontend && npm run build --prefix frontend
+    startCommand: python scripts/render_start.py
+    healthCheckPath: /health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: PUBLIC_ORIGIN
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: OPERATOR_EMAIL
+        sync: false
+      - key: OPERATOR_PASSWORD
+        sync: false
+      - key: ALLOW_REGISTRATION
+        value: "true"

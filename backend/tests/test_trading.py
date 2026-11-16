@@ -273,7 +273,7 @@ def test_watchlist_notifications_admin(world):
         ).status_code
         == 200
     )
-    assert t.get("/api/v1/wallet").status_code == 403
+    assert t.get("/api/v1/wallet").status_code == 401
     with Session() as db:
         assert db.get(Order, pending["id"]).status == "CANCELLED"
 

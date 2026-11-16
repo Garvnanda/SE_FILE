@@ -20,6 +20,9 @@ def clean():
         for table in reversed(Base.metadata.sorted_tables):
             c.execute(table.delete())
     attempts.clear()
+    from app.security import write_throttle
+
+    write_throttle.entries.clear()
 
 
 @pytest.fixture

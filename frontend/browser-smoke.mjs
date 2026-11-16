@@ -8,7 +8,7 @@ for (const [role,creds] of Object.entries(accounts)) {
  await page.screenshot({path:`../docs/evidence/${role.toLowerCase()}-dark.png`,fullPage:true});
  if(role==='TRADER'){
   await page.getByRole('button',{name:'Market',exact:true}).click();await page.getByRole('heading',{name:'Place an order',exact:true}).waitFor();await page.screenshot({path:'../docs/evidence/market-dark.png',fullPage:true});
-  await page.getByRole('button',{name:'Switch to light theme'}).click();await page.screenshot({path:'../docs/evidence/market-light.png',fullPage:true});
+  await page.getByRole('button',{name:'Switch to light theme'}).click();await page.waitForTimeout(250);await page.screenshot({path:'../docs/evidence/market-light.png',fullPage:true});
   await page.setViewportSize({width:390,height:844});await page.screenshot({path:'../docs/evidence/market-mobile.png',fullPage:true});
   if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Mobile page overflows');
  }

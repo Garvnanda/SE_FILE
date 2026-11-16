@@ -741,9 +741,9 @@
       }
     },
     "/api/v1/watchlists/{ident}/items/{stock_id}": {
-      "post": {
+      "delete": {
         "summary": "Watch Item",
-        "operationId": "watch_item_api_v1_watchlists__ident__items__stock_id__post",
+        "operationId": "remove_watchlist_item",
         "parameters": [
           {
             "name": "ident",
@@ -785,9 +785,9 @@
           }
         }
       },
-      "delete": {
+      "post": {
         "summary": "Watch Item",
-        "operationId": "watch_item_api_v1_watchlists__ident__items__stock_id__post",
+        "operationId": "add_watchlist_item",
         "parameters": [
           {
             "name": "ident",
